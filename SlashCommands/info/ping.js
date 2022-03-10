@@ -1,8 +1,8 @@
-const { Client, CommandInteraction } = require("discord.js");
+const { Client, CommandInteraction, MessageEmbed } = require("discord.js");
 
 module.exports = {
     name: "ping",
-    description: "returns websocket ping",
+    description: "Returns websocket ping",
     type: 'CHAT_INPUT',
     /**
      *
@@ -11,6 +11,9 @@ module.exports = {
      * @param {String[]} args
      */
     run: async (client, interaction, args) => {
-        interaction.followUp({ content: `${client.ws.ping}ms!` });
+        let pingMessage = new MessageEmbed()
+            .setColor("#36393F")
+            .setTitle("🏓 Ping: " + client.ws.ping)
+        interaction.followUp({ embeds: [pingMessage] });
     },
 };
